@@ -1,0 +1,88 @@
+/* 定义：圣杯布局就是常见的三栏式布局——两边等宽，中间⾃适应的三栏布局。
+
+实现方式：
+
+设置三栏子元素浮动同向（如 float: left; ）；
+父元素设置左右栏宽度的padding（如 padding: 0 200px; ）；
+中间自适应宽度设置为width:100%;；
+设置左边元素margin-left：-100%;，右边元素margin-left：-200px;，将左右元素向上提；
+设置左右元素position：relative;，左侧元素向左移left:-200px;，右侧元素向右移right:-200px;。 
+ <div class="ui-wrap">
+    <div class="s-middle"></div>
+    <div class="s-left"></div>
+    <div class="s-right"></div>
+    <!-- 中间栏放前面优先渲染 -->
+  </div>
+*/
+
+.ui-wrap{
+    overflow: hidden;
+    clear: both;
+    padding: 0 200px;
+  }
+  .s-middle,.s-left,.s-right{
+    float: left;
+    height: 200px;
+    }
+  .s-left,.s-right{
+    position: relative;
+    width: 200px;
+  }
+  .s-middle{
+    width: 100%;
+    background: red;
+  }
+  .s-left{
+    left: -200px;
+    background: green;
+    margin-left: -100%;
+  }
+  .s-right{
+    right: -200px;
+    margin-left: -200px;
+    background: yellow;
+  }
+
+
+/* 双飞翼布局
+定义：双飞翼布局与圣杯布局相似。只不过少了relative与left, right的步骤和共同的父元素，主内容元素多了层父元素。
+
+实现方式：
+
+两栏和自适应元素都设置统一方向的浮动（如 float: left; ）；
+main元素设置左右margin值，值为左右两栏的宽度。main父元素设置宽度为100%；
+左边栏margin-left为负100%；
+右边栏margin-left为负自身宽度。 
+  <div class="ui-wrap">
+    <div class="s-middle"></div>
+  </div>
+  <div class="s-left"></div>
+  <div class="s-right"></div>
+*/
+
+.ui-wrap{
+    float: left;
+    width: 100%;
+    overflow: hidden;
+    clear: both;
+  }
+  .s-left,.s-right{
+    float: left;
+    height: 200px;
+  }
+  .s-left,.s-right{
+    width: 200px;
+  }
+  .s-middle{
+    height: 200px;
+    margin: 0 200px;
+    background: red;
+  }
+  .s-left{
+    background: green;
+    margin-left: -100%;
+  }
+  .s-right{
+    margin-left: -200px;
+    background: yellow;
+  }

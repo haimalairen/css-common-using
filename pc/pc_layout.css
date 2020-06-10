@@ -1,0 +1,44 @@
+
+/* -------------------------整体---------------------------- */
+/* PC端常用css布局 
+ * 1: 导航栏header一般是全屏，可有固定布局，也有非固定
+ * 2：content内容部分一般是有个最小宽度，然后其整体水平居中一般最小宽度为1280px左右
+ * 3: footer的位置一般根据实际情况来，当content内容确定大于可视高度100%时则常规布局放在文档流，如果确定内容小于则使用fixed布局
+ *    如果不确定内容的高度则可以采用flex布局，如果要兼容IE则不能用flex，需要借助js监听视图高度是否大于header+content
+ */
+.content{
+    min-width: 1200px;
+    margin: 0 auto;
+}
+/* flex布局,将header和footer设置固定高度，content自适应高度将footer撑在最底部 */
+body{
+    display: flex;
+    flex-direction: column;  /*flex布局方向改为纵向*/
+    height: 100%;
+}
+
+#header{
+    /* 我们希望 header 采用固定的高度，只占用必须的空间 */
+    /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+    flex: 0 0 auto;
+    height: 60px;
+ }
+
+ #content{
+    /* 将 flex-grow 设置为1，该元素会占用全部可使用空间
+      而其他元素该属性值为0，因此不会得到多余的空间*/
+    /* 1 flex-grow, 0 flex-shrink, auto flex-basis */
+   flex: 1 0 auto;
+ }
+
+ #footer{
+    /* 和 header 一样，footer 也采用固定高度*/
+    /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+    flex: 0 0 auto;
+ }
+
+
+
+ /* ----------------导航栏----------------- */
+ /* 导航栏一般都有固定高度，所以一般由其子元素撑开父元素高度，切忌让最外层父元素设置padding来撑开高度，
+ 因为很多时候子元素的hover背景色都是要覆盖整个空间 */
